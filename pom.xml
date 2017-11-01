@@ -51,28 +51,14 @@
         <pluginRepository>
             <id>ShawnShoper</id>
             <name>ShawnShoper Repository</name>
-            <url>http://nexus.daqsoft.com/repository/public/</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </pluginRepository>
     </pluginRepositories>
     <repositories>
         <repository>
             <id>ShawnShoper</id>
             <name>ShawnShoper Repository</name>
-            <url>http://nexus.daqsoft.com/repository/public/</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
     </repositories>
     <build>
