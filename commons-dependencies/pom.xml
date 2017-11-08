@@ -9,9 +9,8 @@
         <commons-captcha-version>0.0.1</commons-captcha-version>
         <commons-core-version>0.0.1</commons-core-version>
         <commons-feign-version>0.0.1</commons-feign-version>
-        <commons-http>0.0.1</commons-http>
-        <commons-quartz>0.0.1</commons-quartz>
-        <commons-response-entity>0.0.1</commons-response-entity>
+        <commons-http-version>0.0.1</commons-http-version>
+        <commons-quartz-version>0.0.1</commons-quartz-version>
         <commons-response-entity-version>0.0.1</commons-response-entity-version>
         <commons-starter-captcha-version>0.0.1</commons-starter-captcha-version>
     </properties>
