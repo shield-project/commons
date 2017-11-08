@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>daqsoft-commons-dependencies</artifactId>
+    <artifactId>commons-dependencies</artifactId>
     <properties>
         <commons-captcha-version>0.0.1</commons-captcha-version>
         <commons-core-version>0.0.1</commons-core-version>
-        <commons-feign>0.0.1</commons-feign>
+        <commons-feign-version>0.0.1</commons-feign-version>
         <commons-http>0.0.1</commons-http>
         <commons-quartz>0.0.1</commons-quartz>
         <commons-response-entity>0.0.1</commons-response-entity>
