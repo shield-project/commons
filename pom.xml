@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <packaging>pom</packaging>
     <groupId>org.shoper.commons</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>0.0.1</version>
+    <version>2.0.0-SNAPSHO</version>
 
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <commons-captcha-version>0.0.1</commons-captcha-version>
         <commons-core-version>0.0.1</commons-core-version>
         <commons-feign>0.0.1</commons-feign>
@@ -22,7 +24,6 @@
     <modules>
         <module>commons-core</module>
         <module>commons-http</module>
-        <module>commons-feign</module>
         <module>commons-response-entity</module>
         <module>commons-captcha</module>
         <module>commons-starter-captcha</module>
@@ -34,7 +35,7 @@
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.4.2.RELEASE</version>
+                <version>2.0.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -46,19 +47,25 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <pluginRepositories>
         <pluginRepository>
-            <id>ShawnShoper</id>
-            <name>ShawnShoper Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <id>aliyun</id>
+            <name>aliyun plugin Repository</name>
+            <url>https://maven.aliyun.com/repository/public</url>
         </pluginRepository>
     </pluginRepositories>
     <repositories>
         <repository>
-            <id>ShawnShoper</id>
-            <name>ShawnShoper Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <id>aliyun</id>
+            <layout>default</layout>
+            <name>aliyun Repository</name>
+            <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
     <build>
@@ -74,6 +81,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.4.RELEASE</version>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
@@ -97,7 +105,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <encoding>utf-8</encoding>
+                    <encoding>UTF-8</encoding>
                     <compilerArgs>
                         <arg>-XDignore.symbol.file</arg>
                     </compilerArgs>
