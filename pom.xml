@@ -28,6 +28,7 @@
         <module>commons-captcha</module>
         <module>commons-starter-captcha</module>
         <module>commons-quartz</module>
+        <module>commons-encryption</module>
     </modules>
     <dependencyManagement>
         <dependencies>
