@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.ruiqi.commons.encryption.config.EncryptionPropertyConfig
+org.shoper.commons.encryption.config.EncryptionPropertyConfig
