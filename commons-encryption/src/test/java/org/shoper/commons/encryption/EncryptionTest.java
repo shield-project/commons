@@ -10,14 +10,14 @@ import org.junit.Test;
 public class EncryptionTest {
     @Test
     public void textEncryptorTest(){
-        EncryptUtil.TextEncryptor textEncryptor = new EncryptUtil.TextEncryptor("asdsad");
-        String text = textEncryptor.encrypt("asdsadsadasas");
+        EncryptUtil.TextEncryptor textEncryptor = new EncryptUtil.TextEncryptor("fitness-testing_random12349sadjn~21321n");
+        String text = textEncryptor.encrypt("jdbc:mysql://127.0.0.1:3306/fitness-testing?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false");
         System.out.println(text);
     }
     @Test
     public void textDecryptorTest(){
-        EncryptUtil.TextEncryptor textEncryptor = new EncryptUtil.TextEncryptor("asdsad");
-        String text = textEncryptor.decrypt(" tQS4KVcHxZggAPD/zhJCsICKDH77AUi4G");
+        EncryptUtil.TextEncryptor textEncryptor = new EncryptUtil.TextEncryptor("fitness-testing_random12349sadjn~21321n");
+        String text = textEncryptor.decrypt(" tn435m9qibvJMJPln/hDPhaFkSV5dJxvFH3SkmLrxJZfYs8HtJV8qiRAynMjmgVfzpktG6zQMN4zjlYluVPB069UmzDB7lOfNqMVen3gxmEQ46abOPIZ9EQ1/iGPWNrRS4SWu0M52V5i4JsSZ6+qgmGBwJ89qKfoaBLxnV8oWYxjaJUz/sMNqAQ3WLcxDs2LDJYwXuo7glJo=");
         System.out.println(text);
     }
     @Test
