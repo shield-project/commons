@@ -13,14 +13,15 @@ import java.util.Objects;
 public class ResponseBuilder {
     private String message = "success";
     private Object data;
-    private int code = 0;
+    private int code = 200;
     private List<Object> datas;
 
     private int total;
     private int currPage;
     private int pageSize;
     private int totalPage;
-    private Map<String,Object> extend;
+    private Map<String, Object> extend;
+
     private ResponseBuilder() {
 
     }
@@ -63,10 +64,12 @@ public class ResponseBuilder {
         }
         return baseResponse;
     }
-    public ResponseBuilder extend(Map<String,Object> extend){
+
+    public ResponseBuilder extend(Map<String, Object> extend) {
         this.extend = extend;
         return this;
     }
+
     public ResponseBuilder data(Object data) {
         if (data instanceof List)
             this.datas = (List<Object>) data;
