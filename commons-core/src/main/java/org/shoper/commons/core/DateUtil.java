@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * 时间、日期工具类
+ *
  * @author ShawnShoper
  * @date 2017/1/19 0019 16:56
  */
@@ -14,7 +15,7 @@ public class DateUtil {
     public static final String DATE24_CN = "yyyy年MM月dd日 HH时mm分ss秒";
     public static final String DATE12_CN = "yyyy年MM月dd日 hh时mm分ss秒";
 
-    static class TimeElapse {
+    public static class TimeElapse {
         private long day;
         private long hour;
         private long min;
@@ -84,16 +85,16 @@ public class DateUtil {
      */
     public static TimeElapse timeToStr(long time) {
         TimeElapse dateBean = new TimeElapse();
-        if ( time > SEC ) {
-            if ( time < MIN ) {
+        if (time > SEC) {
+            if (time < MIN) {
                 dateBean.setSec(time / SEC);
                 dateBean.setMsec(time - dateBean.getSec() * SEC);
-            } else if ( time < HOUR ) {
+            } else if (time < HOUR) {
                 dateBean.setMin(time / MIN);
                 dateBean.setSec((time - dateBean.getMin() * MIN) / SEC);
                 dateBean.setMsec(time - dateBean.getMin() * MIN
                         - dateBean.getSec() * SEC);
-            } else if ( time < DAY ) {
+            } else if (time < DAY) {
                 dateBean.setHour(time / HOUR);
                 dateBean.setMin((time - dateBean.getHour() * HOUR) / MIN);
                 dateBean.setSec((time - dateBean.getHour() * HOUR
