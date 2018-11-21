@@ -62,6 +62,12 @@ public class DateUtil {
             this.msec = msec;
         }
 
+        public String simpleToString() {
+            return (this.day == 0 ? "" : day + " d,")
+                    + (this.hour == 0 ? "" : this.hour + " H,")
+                    + (this.min == 0 ? "" : this.min + " m");
+        }
+
         @Override
         public String toString() {
             return (this.day == 0 ? "" : day + " d,")
@@ -144,10 +150,16 @@ public class DateUtil {
 
     public static class DiffTime {
         private long lastTime;
+        private long comparedTime;
 
         public DiffTime reset() {
             lastTime = 0L;
+            comparedTime = 0L;
             return this;
+        }
+
+        public void setComparedTime(long comparedTime) {
+            this.comparedTime = comparedTime;
         }
 
         public DiffTime set(long time) {
@@ -155,12 +167,12 @@ public class DateUtil {
             return this;
         }
 
-        public TimeElapse elapse2str(long time) {
-            return DateUtil.timeToStr(lastTime);
+        public static TimeElapse elapse2str(long time) {
+            return DateUtil.timeToStr(time);
         }
 
         public TimeElapse elapse2str() {
-            return DateUtil.timeToStr(System.currentTimeMillis() - lastTime);
+            return DateUtil.timeToStr((comparedTime != 0 ? comparedTime : System.currentTimeMillis()) - lastTime);
         }
 
         public long elapse2time() {
