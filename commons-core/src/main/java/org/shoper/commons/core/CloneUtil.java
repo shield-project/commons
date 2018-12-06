@@ -1,12 +1,14 @@
 package org.shoper.commons.core;
 
-        import java.io.*;
+import java.io.*;
 
 /**
  * Created by Administrator on 2017/1/18 0018.
  */
 public class CloneUtil {
-    private CloneUtil(){}
+    private CloneUtil() {
+    }
+
     /**
      * 对象深度克隆....
      *

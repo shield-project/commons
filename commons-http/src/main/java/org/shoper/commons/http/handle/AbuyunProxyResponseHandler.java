@@ -8,7 +8,7 @@ import org.shoper.commons.http.exception.UnHandleException;
  * Created by ShawnShoper on 16/9/12.
  */
 public class AbuyunProxyResponseHandler extends ResponseHandler {
-	@Override
+	//	@Override
 	public void errHandle (int status, HttpClient httpClient) throws UnHandleException {
 
 		//407
