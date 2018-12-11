@@ -21,6 +21,7 @@ public class ResponseBuilder {
     private int pageSize;
     private int totalPage;
     private Map<String, Object> extend;
+    private boolean isMuilt = false;
 
     private ResponseBuilder() {
 
@@ -37,7 +38,7 @@ public class ResponseBuilder {
         if (Objects.nonNull(this.datas) && this.total > 0 && this.currPage > 0 && this.pageSize > 0 && this.totalPage > 0) {
             PageDatasResponse pageDatasResponse = new PageDatasResponse();
             pageDatasResponse.setCode(this.code);
-            pageDatasResponse.setDatas(this.datas);
+            pageDatasResponse.setData(this.datas);
             pageDatasResponse.setMessage(this.message);
             pageDatasResponse.setPage(new PageResponse(this.total, this.currPage, this.pageSize, this.totalPage));
             pageDatasResponse.setExtend(extend);
@@ -45,7 +46,7 @@ public class ResponseBuilder {
         } else if (Objects.nonNull(this.datas)) {
             DatasResponse datasResponse = new DatasResponse<>();
             datasResponse.setCode(this.code);
-            datasResponse.setDatas(this.datas);
+            datasResponse.setData(this.datas);
             datasResponse.setMessage(this.message);
             datasResponse.setExtend(extend);
             baseResponse = datasResponse;
@@ -71,9 +72,10 @@ public class ResponseBuilder {
     }
 
     public ResponseBuilder data(Object data) {
-        if (data instanceof List)
+        if (data instanceof List) {
             this.datas = (List<Object>) data;
-        else
+            isMuilt = true;
+        } else
             this.data = data;
         return this;
     }

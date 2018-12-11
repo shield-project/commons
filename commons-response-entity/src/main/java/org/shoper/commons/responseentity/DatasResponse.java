@@ -14,17 +14,14 @@ import java.util.stream.Collectors;
  * @date 2017/1/23 0023 14:33
  */
 public class DatasResponse<T> extends BaseResponse {
-    private List<T> datas;
+    private List<T> data;
 
-    public List<T> getDatas() {
-        return datas;
+    public List<T> getData() {
+        return data;
     }
 
-    public static void main(String[] args) {
-        System.out.println(1/0.0);
-    }
-    public List<T> getDatas(Class<T> clazz) throws IOException {
-        List<T> collect = this.datas.stream().map(region -> {
+    public List<T> getData(Class<T> clazz) throws IOException {
+        List<T> collect = this.data.stream().map(region -> {
             ObjectMapper om = new ObjectMapper();
             try {
                 return om.readValue(om.writeValueAsString(region), clazz);
@@ -36,7 +33,7 @@ public class DatasResponse<T> extends BaseResponse {
         return collect;
     }
 
-    public void setDatas(List<T> datas) {
-        this.datas = datas;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 }

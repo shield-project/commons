@@ -62,7 +62,7 @@ public class ResponseEntityTest {
             foo.setAddr("Chengdu");
             foos.add(foo);
         }
-        dataResponse.setDatas(foos);
+        dataResponse.setData(foos);
         System.out.println(toJson(dataResponse));
     }
     @Test
@@ -86,7 +86,7 @@ public class ResponseEntityTest {
             foo.setAddr("Chengdu");
             foos.add(foo);
         }
-        dataResponse.setDatas(foos);
+        dataResponse.setData(foos);
         PageResponse pageResponse = new PageResponse();
         pageResponse.setCurrPage(1);
         pageResponse.setPageSize(1);

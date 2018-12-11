@@ -113,7 +113,7 @@ public class HttpClient {
     public String post() throws HttpClientException, InterruptedException, TimeoutException {
         CloseableHttpClient httpClient = null;//HttpClients.createDefault();
         CloseableHttpResponse response = null;
-        int statuCode = 0;
+        int statusCode = 0;
         try {
             httpClient = getHttpClient();
             HttpPost httpPost = new HttpPost(accessBean.getUrl());
@@ -124,19 +124,19 @@ public class HttpClient {
             responseHandle.handleHttpResponse(response, this);
             return responseHandle.getContent();
         } catch (SocketException e) {
-            statuCode = 1;
+            statusCode = 1;
         } catch (Exception e) {
-            statuCode = 1;
+            statusCode = 1;
             throw new HttpClientException(e);
         } finally {
-            destroy(response, httpClient, statuCode);
+            destroy(response, httpClient, statusCode);
         }
         return null;
     }
 
-    private void destroy(Closeable closeable1, Closeable closeable2, int statuCode) throws HttpClientException {
+    private void destroy(Closeable closeable1, Closeable closeable2, int statusCode) throws HttpClientException {
         if (accessBean.isProxy())
-            ProxyServerPool.returnProxyServer(proxyServer, statuCode == 0);
+            ProxyServerPool.returnProxyServer(proxyServer, statusCode == 0);
         try {
             if (!Objects.isNull(closeable1))
                 closeable1.close();
@@ -156,7 +156,7 @@ public class HttpClient {
     public String doGet() throws HttpClientException, TimeoutException {
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
-        int statuCode = 0;
+        int statusCode = 0;
         try {
             httpClient = getHttpClient();
             HttpGet httpGet = new HttpGet(accessBean.getUrl());
@@ -165,10 +165,10 @@ public class HttpClient {
             responseHandle.handleHttpResponse(response, this);
             return responseHandle.getContent();
         } catch (IOException e) {
-            statuCode = 1;
+            statusCode = 1;
             throw new HttpClientException(e);
         } finally {
-            destroy(response, httpClient, statuCode);
+            destroy(response, httpClient, statusCode);
         }
     }
 
@@ -286,7 +286,7 @@ public class HttpClient {
     public InputStream getInputSteam() throws HttpClientException, TimeoutException {
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
-        int statuCode = 0;
+        int statusCode = 0;
         try {
             httpClient = getHttpClient();
             HttpGet httpGet = new HttpGet(accessBean.getUrl());
@@ -295,10 +295,10 @@ public class HttpClient {
             responseHandle.handleHttpResponse(response, this);
             return responseHandle.getInputSteam();
         } catch (IOException e) {
-            statuCode = 1;
+            statusCode = 1;
             throw new HttpClientException(e);
         } finally {
-            destroy(response, httpClient, statuCode);
+            destroy(response, httpClient, statusCode);
         }
     }
 //	public void injectHTTPS(CloseableHttpClient httpclient) throws KeyManagementException, NoSuchAlgorithmException {
