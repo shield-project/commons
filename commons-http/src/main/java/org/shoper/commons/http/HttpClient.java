@@ -1,15 +1,7 @@
 package org.shoper.commons.http;
 
-import org.apache.http.client.methods.HttpDelete;
-import org.shoper.commons.core.StringUtil;
-import org.shoper.commons.http.exception.HttpClientException;
-import org.shoper.commons.http.exception.UnHandleException;
-import org.shoper.commons.http.handle.DefaultResponseHandler;
-import org.shoper.commons.http.handle.ResponseHandler;
-import org.shoper.commons.http.handle.RetryHandler;
-import org.shoper.commons.http.proxy.ProxyServer;
-import org.shoper.commons.http.proxy.ProxyServerPool;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -17,8 +9,10 @@ import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -26,6 +20,13 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.shoper.commons.core.StringUtil;
+import org.shoper.commons.http.exception.HttpClientException;
+import org.shoper.commons.http.handle.DefaultResponseHandler;
+import org.shoper.commons.http.handle.ResponseHandler;
+import org.shoper.commons.http.handle.RetryHandler;
+import org.shoper.commons.http.proxy.ProxyServer;
+import org.shoper.commons.http.proxy.ProxyServerPool;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -118,8 +119,15 @@ public class HttpClient {
             httpClient = getHttpClient();
             HttpPost httpPost = new HttpPost(accessBean.getUrl());
             httpPost.setHeaders(injectHeaders());
-            if (Objects.nonNull(accessBean.getFormDatas()) && !accessBean.getFormDatas().isEmpty())
+
+            if (Objects.nonNull(accessBean.getFormDatas()) && !accessBean.getFormDatas().isEmpty()) {
+                httpPost.setHeader("Content-type", "application/x-www-form-urlencoded");
                 httpPost.setEntity(new UrlEncodedFormEntity(accessBean.getFormDatas()));
+            } else {
+                if (accessBean.getEntity() != null) {
+                    httpPost.setEntity(new StringEntity(accessBean.getEntity(), accessBean.getMediaType(), accessBean.getCharset()));
+                }
+            }
             response = httpClient.execute(httpPost);
             responseHandle.handleHttpResponse(response, this);
             return responseHandle.getContent();

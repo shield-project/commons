@@ -20,27 +20,48 @@ public class AccessBean {
 	private TimeUnit timeoutUnit = TimeUnit.SECONDS;
 	private String url;
 	private List<BasicNameValuePair> formDatas = new ArrayList<>();
+	private String entity;
+	private String mediaType;
+
+	public String getEntity() {
+		return entity;
+	}
+
+	public void setEntity(String entity) {
+		this.entity = entity;
+	}
+
+	public String getMediaType() {
+		return mediaType;
+	}
+
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
+	}
+
 	public void setFormDatas (List<BasicNameValuePair> formDatas) {
 		this.formDatas = formDatas;
 	}
 
 	public AccessBean (String url) {
-		this(null, 0, 0, null, url, false, null);
+		this(null, 0, 0, null, url, false, null, null, null);
 	}
 
 	public AccessBean (String charset, int timeout, int retry, TimeUnit timeoutUnit, String url, boolean isProxy) {
-		this(charset, timeout, retry, timeoutUnit, url, isProxy, null);
+		this(charset, timeout, retry, timeoutUnit, url, isProxy, null, null, null);
 	}
 
-	public AccessBean (String charset, int timeout, int retry, TimeUnit timeoutUnit, String url, boolean isProxy, List<Map<String, String>> formDatas) {
+	public AccessBean(String charset, int timeout, int retry, TimeUnit timeoutUnit, String url, boolean isProxy, List<Map<String, String>> formData, String entity, String mediaType) {
 		this.charset = charset;
 		this.timeout = timeout;
 		this.retry = retry;
 		this.timeoutUnit = timeoutUnit;
 		this.url = url;
 		this.isProxy = isProxy;
-		if (Objects.nonNull(formDatas)) {
-			formDatas.forEach(map -> {
+		this.entity = entity;
+		this.mediaType = mediaType;
+		if (Objects.nonNull(formData)) {
+			formData.forEach(map -> {
 				List<BasicNameValuePair> list = map.keySet().stream().map(key -> new BasicNameValuePair(key, map.get(key))).collect(Collectors.toList());
 				this.formDatas.addAll(list);
 			});

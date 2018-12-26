@@ -18,8 +18,20 @@ public class HttpClientBuilder {
     private int retry = 3;
     private TimeUnit timeoutUnit = TimeUnit.SECONDS;
     private String url;
-    private List <Map <String, String>> formDatas;
+    private List<Map<String, String>> formDatas;
     private boolean proxy;
+    private String entity;
+    private String mediaType;
+
+    public HttpClientBuilder entity(String entity) {
+        this.entity = entity;
+        return this;
+    }
+
+    public HttpClientBuilder mediaType(String mediaType) {
+        this.mediaType = mediaType;
+        return this;
+    }
 
     public HttpClientBuilder setProxy(boolean proxy) {
         this.proxy = proxy;
@@ -51,13 +63,13 @@ public class HttpClientBuilder {
         return this;
     }
 
-    public HttpClientBuilder setFormDatas(List <Map <String, String>> formDatas) {
+    public HttpClientBuilder setFormDatas(List<Map<String, String>> formDatas) {
         this.formDatas = formDatas;
         return this;
     }
 
-    public HttpClientBuilder setFormDatas(Map <String, String> formDatas) {
-        List <Map <String, String>> formData = new ArrayList <>();
+    public HttpClientBuilder setFormDatas(Map<String, String> formDatas) {
+        List<Map<String, String>> formData = new ArrayList<>();
         formData.add(formDatas);
         setFormDatas(formData);
         return this;
@@ -68,7 +80,7 @@ public class HttpClientBuilder {
     }
 
     public HttpClient build() throws MalformedURLException {
-        AccessBean accessBean = new AccessBean(charset, timeout, retry, timeoutUnit, url, proxy, formDatas);
+        AccessBean accessBean = new AccessBean(charset, timeout, retry, timeoutUnit, url, proxy, formDatas, entity, mediaType);
         return new HttpClient(accessBean);
     }
 

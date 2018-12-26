@@ -42,9 +42,9 @@ public class CaptchaGenerator {
         }
         //绘画字体
         char[] world = code.toCharArray();
-        //world width
+        //character width
         int wd = (captcha.getWidth() - captcha.getWorldSpace() * captcha.getCodeCount()) / 2;
-        //world height
+        //character height
         int wh = captcha.getHeight() - (captcha.getHeight() - captcha.getFontSize()) / 2;
         for (int i = 0; i < this.captcha.getCodeCount(); i++) {
             int red = random.nextInt(255);
