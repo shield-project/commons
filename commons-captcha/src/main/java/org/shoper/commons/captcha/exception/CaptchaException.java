@@ -3,7 +3,7 @@ package org.shoper.commons.captcha.exception;
 /**
  * Created by ShawnShoper on 2017/3/3.
  */
-public class CaptchaException extends  Exception {
+public class CaptchaException extends RuntimeException {
     public CaptchaException() {
         super();
     }

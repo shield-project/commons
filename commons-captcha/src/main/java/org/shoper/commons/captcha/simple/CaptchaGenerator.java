@@ -1,29 +1,81 @@
 package org.shoper.commons.captcha.simple;
 
+import org.shoper.commons.captcha.BackGroundColor;
 import org.shoper.commons.captcha.Captcha;
 import org.shoper.commons.captcha.exception.CaptchaException;
 import org.shoper.commons.core.NumberUtil;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.Objects;
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * Created by ShawnShoper on 2017/3/3.
  */
 public class CaptchaGenerator {
     private Captcha captcha;
+    int loopCount = 1;
+    private final static String tmpDir = System.getProperty("java.io.tmpdir");
 
     public CaptchaGenerator(Captcha captcha) {
         this.captcha = captcha;
+        if (captcha.isAnimate()) loopCount = 8;
     }
 
     public BufferedImage generateImage(String code) {
-        BufferedImage buffImg = new BufferedImage(this.captcha.getWidth(), this.captcha.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bufferedImage = null;
+        if (!captcha.isAnimate())
+            bufferedImage = generateImage(code, captcha.isAnimate());
+        else {
+            String fileName = tmpDir + File.separator + UUID.randomUUID().toString() + ".gif";
+            GifSequenceWriter gifSequenceWriter = null;
+            try {
+                ImageOutputStream outputStream = new FileImageOutputStream(new File(fileName));
+                gifSequenceWriter = new GifSequenceWriter(outputStream, 1, 500, true);
+                for (int i = 0; i < loopCount; i++) {
+                    bufferedImage = generateImage(code, captcha.isAnimate());
+                    gifSequenceWriter.writeToSequence(bufferedImage);
+                }
+                gifSequenceWriter.close();
+
+                FileImageInputStream fileImageInputStream = new FileImageInputStream(new File(fileName));
+                ByteBuffer byteBuffer = ByteBuffer.allocate((int) fileImageInputStream.length());
+
+                bufferedImage = ImageIO.read(new File(fileName));
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage, "gif", byteArrayOutputStream);
+                byte[] bytes = byteArrayOutputStream.toByteArray();
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+                bufferedImage = ImageIO.read(byteArrayInputStream);
+                byteArrayOutputStream.close();
+                byteArrayInputStream.close();
+                if (new File(fileName).delete()) {
+                    System.out.println("删除成功");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return bufferedImage;
+    }
+
+    public BufferedImage generateImage(String code, boolean animate) {
+        BufferedImage buffImg = new BufferedImage(this.captcha.getWidth(), this.captcha.getHeight(), animate ? BufferedImage.TYPE_INT_BGR : BufferedImage.TYPE_INT_ARGB);
+
         Graphics2D g = buffImg.createGraphics();
         //设置背景色
-        g.setColor(Objects.isNull(this.captcha.getBackGroundColor())?Color.WHITE:this.captcha.getBackGroundColor().build());
+        g.setColor(Objects.isNull(this.captcha.getBackGroundColor()) ? Color.WHITE : this.captcha.getBackGroundColor().build());
         g.fillRect(0, 0, this.captcha.getWidth(), this.captcha.getHeight());
         g.setFont(getFont());
         Random random = new Random();
@@ -51,10 +103,26 @@ public class CaptchaGenerator {
             int green = random.nextInt(255);
             int blue = random.nextInt(255);
             int alpha = random.nextInt(100) + 155;
-            g.setColor(new Color(red, green, blue, alpha));
+            if (animate)
+                g.setColor(new Color(red, green, blue));
+            else
+                g.setColor(new Color(red, green, blue, alpha));
             g.drawString(world[i] + "", wd + i * captcha.getWorldSpace(), wh);
         }
+
         return buffImg;
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println();
+        Captcha captcha = new Captcha();
+        captcha.setAnimate(true);
+        captcha.setBackGroundColor(new BackGroundColor(120, 120, 120, 0));
+        CaptchaGenerator captchaGenerator = new CaptchaGenerator(captcha);
+        String code = captchaGenerator.generateCode();
+        BufferedImage bufferedImage = captchaGenerator.generateImage(code);
+        ImageIO.write(bufferedImage, "gif", new File("D://img/aaaa.gif"));
     }
 
     private Font getFont() {
