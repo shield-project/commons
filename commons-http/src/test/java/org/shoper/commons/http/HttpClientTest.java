@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
 public class HttpClientTest {
     @Test
     public void httpClientTest() throws MalformedURLException, InterruptedException, HttpClientException, TimeoutException {
-        HttpClient httpClient = HttpClientBuilder.custom().setUrl("http://weibo.com/p/aj/v6/mblog/mbloglist?ajwvr=6&domain=100505&profile_ftype=1&is_all=1&pagebar=0&pl_name=Pl_Official_MyProfileFeed__24&id=1005053627755783&script_uri=/u/3627755783&feed_type=0&page=1&pre_page=1&domain_op=100505&__rnd=1470627772452").build();
+        HttpClient httpClient = HttpClientBuilder.custom().url("http://weibo.com/p/aj/v6/mblog/mbloglist?ajwvr=6&domain=100505&profile_ftype=1&is_all=1&pagebar=0&pl_name=Pl_Official_MyProfileFeed__24&id=1005053627755783&script_uri=/u/3627755783&feed_type=0&page=1&pre_page=1&domain_op=100505&__rnd=1470627772452").build();
 //		httpClient.setCookies("SINAGLOBAL=4466064745352.929.1475033718231; wvr=6; YF-Ugrow-G0=1eba44dbebf62c27ae66e16d40e02964; SCF=Ah9Z2M30c4B9_6Thfkz--Vh0Lr5sJgOXdV44r8enK_f2lKYdoKOhVPwhLWEx82WTwP83FbhmvFWGfNL-SljN_Yw.; SUB=_2A2566YyeDeTxGedG6VYS9i3LzT6IHXVZnvlWrDV8PUNbmtBeLXPHkW-O44Qf_9hQgtQUtkULL_-K8kpF5A..; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhdPz3lCecbA_hp6RKPxGfu5JpX5KMhUgL.Fo2ReoB0SoeNSoz2dJLoIEqLxK-LBK2L1--LxKML12qLB-B_TCH8SCHFxbHWSEH8Sb-RSF-ReBtt; SUHB=010XX2a6jXFhTf; ALF=1506750542; SSOLoginState=1475214542; YF-V5-G0=8a3c37d39afd53b5f9eb3c8fb1874eec; _s_tentry=login.sina.com.cn; Apache=9010673075615.451.1475214562259; ULV=1475214562281:3:3:3:9010673075615.451.1475214562259:1475159910047; YF-Page-G0=b9004652c3bb1711215bacc0d9b6f2b5; UOR=,,login.sina.com.cn");
         System.out.println(httpClient.doGet());
     }
@@ -27,7 +27,7 @@ public class HttpClientTest {
     public void httpClientTest1() throws MalformedURLException, InterruptedException, HttpClientException, TimeoutException, FileNotFoundException {
         ProxyServerPool.importProxyServer(new File("src/test/resources/proxy.json"), Charset.forName("utf-8"));
         String url = "http://product.weather.com.cn/alarm/grepalarm.php?areaid=" + URLEncoder.encode("[0-9]{5,7}") + "&_=1488879475359";
-        HttpClient build = HttpClientBuilder.custom().setCharset("utf-8").setUrl(url).build();
+        HttpClient build = HttpClientBuilder.custom().charset("utf-8").url(url).build();
         Map<String, String> header = new HashMap<>();
 //        header.put("Host","product.weather.com.cn");
         header.put("Referer", "http://www.weather.com.cn/alarm/warninglist.shtml");
@@ -48,7 +48,7 @@ public class HttpClientTest {
         map.put("pic", data);
         Map<String, String> rh = new HashMap<>();
         rh.put("Content-type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
-        HttpClient build = HttpClientBuilder.custom().setUrl("http://192.168.0.13:8000").setCharset("utf-8").setFormDatas(map).build();
+        HttpClient build = HttpClientBuilder.custom().url("http://192.168.0.13:8000").charset("utf-8").formDatas(map).build();
         build.setRequestHeader(rh);
         System.out.println(build.post());
     }

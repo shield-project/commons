@@ -38,40 +38,40 @@ public class HttpClientBuilder {
         return this;
     }
 
-    public HttpClientBuilder setCharset(String charset) {
+    public HttpClientBuilder charset(String charset) {
         this.charset = charset;
         return this;
     }
 
-    public HttpClientBuilder setTimeout(int timeout) {
+    public HttpClientBuilder timeout(int timeout) {
         this.timeout = timeout;
         return this;
     }
 
-    public HttpClientBuilder setRetry(int retry) {
+    public HttpClientBuilder retry(int retry) {
         this.retry = retry;
         return this;
     }
 
-    public HttpClientBuilder setTimeoutUnit(TimeUnit timeoutUnit) {
+    public HttpClientBuilder timeoutUnit(TimeUnit timeoutUnit) {
         this.timeoutUnit = timeoutUnit;
         return this;
     }
 
-    public HttpClientBuilder setUrl(String url) {
+    public HttpClientBuilder url(String url) {
         this.url = url;
         return this;
     }
 
-    public HttpClientBuilder setFormDatas(List<Map<String, String>> formDatas) {
+    public HttpClientBuilder formDatas(List<Map<String, String>> formDatas) {
         this.formDatas = formDatas;
         return this;
     }
 
-    public HttpClientBuilder setFormDatas(Map<String, String> formDatas) {
+    public HttpClientBuilder formDatas(Map<String, String> formDatas) {
         List<Map<String, String>> formData = new ArrayList<>();
         formData.add(formDatas);
-        setFormDatas(formData);
+        formDatas(formData);
         return this;
     }
 
