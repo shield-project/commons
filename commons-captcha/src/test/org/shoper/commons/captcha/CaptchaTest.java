@@ -1,11 +1,8 @@
 package org.shoper.commons.captcha;
 
+import org.junit.Test;
 import org.shoper.commons.captcha.exception.CaptchaException;
 import org.shoper.commons.captcha.simple.CaptchaGenerator;
-import com.jacob.activeX.ActiveXComponent;
-import com.jacob.com.Dispatch;
-import com.jacob.com.Variant;
-import org.junit.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -37,25 +34,4 @@ public class CaptchaTest {
         fileOutputStream.close();
     }
 
-    @Test
-    public void voice() {
-        ActiveXComponent sap = new ActiveXComponent("Sapi.SpVoice");
-
-        Dispatch sapo = sap.getObject();
-        try {
-
-            // 音量 0-100
-            sap.setProperty("Volume", new Variant(100));
-            // 语音朗读速度 -10 到 +10
-            sap.setProperty("Rate", new Variant(2));
-
-            // 执行朗读
-            Dispatch.call(sapo, "Speak", new Variant("汪，你是个大傻逼"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            sapo.safeRelease();
-            sap.safeRelease();
-        }
-    }
 }

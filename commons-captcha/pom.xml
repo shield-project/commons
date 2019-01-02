@@ -23,20 +23,5 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.facebook.fresco</groupId>
-            <artifactId>animated-gif</artifactId>
-            <version>1.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.jacob-project</groupId>
-            <artifactId>jacob</artifactId>
-            <version>1.14.3</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.jacob-project</groupId>
-            <artifactId>jacob</artifactId>
-            <version>1.14.3</version>
-        </dependency>
     </dependencies>
 </project>

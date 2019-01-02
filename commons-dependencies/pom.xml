@@ -6,19 +6,19 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>commons-dependencies</artifactId>
     <properties>
-        <commons-captcha-version>2.0.0-SNAPSHOT</commons-captcha-version>
-        <commons-core-version>2.0.0-SNAPSHOT</commons-core-version>
-        <commons-feign-version>2.0.0-SNAPSHOT</commons-feign-version>
-        <commons-http-version>2.0.0-SNAPSHOT</commons-http-version>
-        <commons-quartz-version>2.0.0-SNAPSHOT</commons-quartz-version>
-        <commons-response-entity-version>2.0.0-SNAPSHOT</commons-response-entity-version>
-        <commons-starter-captcha-version>2.0.0-SNAPSHOT</commons-starter-captcha-version>
-        <commons-encryption>2.0.0-SNAPSHOT</commons-encryption>
+        <commons-captcha-version>2.0.0</commons-captcha-version>
+        <commons-core-version>2.0.0</commons-core-version>
+        <commons-feign-version>2.0.0</commons-feign-version>
+        <commons-http-version>2.0.0</commons-http-version>
+        <commons-quartz-version>2.0.0</commons-quartz-version>
+        <commons-response-entity-version>2.0.0</commons-response-entity-version>
+        <commons-starter-captcha-version>2.0.0</commons-starter-captcha-version>
+        <commons-encryption>2.0.0</commons-encryption>
     </properties>
     <parent>
         <artifactId>commons-parent</artifactId>
         <groupId>org.shoper.commons</groupId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0</version>
     </parent>
     <dependencyManagement>
         <dependencies>
