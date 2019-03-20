@@ -7,18 +7,18 @@
     <packaging>pom</packaging>
     <groupId>org.shoper.commons</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
 
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <commons-captcha-version>2.0.0</commons-captcha-version>
-        <commons-core-version>2.0.0</commons-core-version>
-        <commons-feign>2.0.0</commons-feign>
-        <commons-http>2.0.0</commons-http>
-        <commons-quartz>2.0.0</commons-quartz>
-        <commons-response-entity>2.0.0</commons-response-entity>
+        <commons-captcha-version>2.0.1</commons-captcha-version>
+        <commons-core-version>2.0.1</commons-core-version>
+        <commons-feign>2.0.1</commons-feign>
+        <commons-http>2.0.1</commons-http>
+        <commons-quartz>2.0.1</commons-quartz>
+        <commons-response-entity>2.0.1</commons-response-entity>
     </properties>
 
     <modules>

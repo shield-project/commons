@@ -13,7 +13,7 @@ import java.util.Objects;
 public class ResponseBuilder {
     private String message = "success";
     private Object data;
-    private int code = 200;
+    private int code = 0;
     private List<Object> datas;
 
     private int total;
